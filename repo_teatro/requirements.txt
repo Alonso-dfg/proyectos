@@ -1,0 +1,7 @@
+pyspark==3.5.3
+pandas>=2.0
+pyarrow>=14.0
+matplotlib>=3.8
+# Solo para el modo Kafka del productor:
+kafka-python-ng>=2.2
+pytest>=8.0

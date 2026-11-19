@@ -1,0 +1,24 @@
+{
+  "fecha_proceso": "2026-11-19T17:07:53",
+  "version_contrato": "v3",
+  "archivo_origen": "ventas_boletas_raw.csv",
+  "registros_raw": 1222,
+  "filas_duplicadas_descartadas": 8,
+  "registros_cuarentena": 20,
+  "motivos_cuarentena": {
+    "precio_cero_no_cortesia": 20
+  },
+  "registros_staging": 1194,
+  "correcciones_aplicadas": {
+    "fechas_dd_mm_aaaa_normalizadas": 44,
+    "obras_normalizadas_contra_catalogo": 72,
+    "canal_imputado_no_especificado": 60
+  },
+  "cuadre": true,
+  "umbrales_contrato": {
+    "Unicidad (0 duplicados de id_venta)": true,
+    "Validez (100% fechas AAAA-MM-DD)": true,
+    "Consistencia (0 precio=0 sin cortesía)": true,
+    "Completitud canal (<2% vacíos; actual 5.0%)": false
+  }
+}

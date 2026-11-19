@@ -1,0 +1,62 @@
+{
+  "fecha_ejecucion": "2026-11-04T21:17:40",
+  "fuente": "archivos",
+  "watermark": "1 day",
+  "trigger_s": 2,
+  "version_contrato": "v3",
+  "duracion_total_s": 152.3,
+  "consultas": {
+    "silver": {
+      "microlotes_con_datos": 44,
+      "filas_leidas": 1222,
+      "filas_por_segundo_procesadas_prom": 25.5,
+      "duracion_trigger_ms_prom": 1239,
+      "watermark_final": "2026-07-28T23:39:57.000Z",
+      "filas_estado_final": 12,
+      "filas_descartadas_por_watermark": 5
+    },
+    "gold_ocupacion": {
+      "microlotes_con_datos": 44,
+      "filas_leidas": 1222,
+      "filas_por_segundo_procesadas_prom": 35.1,
+      "duracion_trigger_ms_prom": 935,
+      "watermark_final": "2026-07-28T23:39:57.000Z",
+      "filas_estado_final": 27,
+      "filas_descartadas_por_watermark": 5
+    },
+    "gold_ventanas": {
+      "microlotes_con_datos": 44,
+      "filas_leidas": 1222,
+      "filas_por_segundo_procesadas_prom": 35.7,
+      "duracion_trigger_ms_prom": 914,
+      "watermark_final": "2026-07-28T23:39:57.000Z",
+      "filas_estado_final": 17,
+      "filas_descartadas_por_watermark": 5
+    }
+  },
+  "conciliacion_con_batch": {
+    "boletas_streaming": 1189,
+    "ingreso_streaming_cop": 32730000,
+    "cuarentena_streaming": 20,
+    "latencia_s": {
+      "prom": 1.421,
+      "p50": 1.853,
+      "p95": 1.891,
+      "max": 4.57
+    },
+    "eventos_publicados": 1222,
+    "boletas_batch": 1194,
+    "ingreso_batch_cop": 32855000,
+    "ids_solo_en_batch": [
+      1286,
+      1314,
+      1431,
+      1561,
+      1562
+    ],
+    "ids_solo_en_streaming": [],
+    "faltantes_explicados_por_eventos_muy_tardios": true,
+    "duplicados_en_streaming": 0,
+    "ingreso_a_recuperar_en_batch_cop": 125000
+  }
+}

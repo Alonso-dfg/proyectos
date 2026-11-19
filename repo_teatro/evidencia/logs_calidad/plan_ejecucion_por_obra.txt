@@ -1,0 +1,370 @@
+== Physical Plan ==
+AdaptiveSparkPlan (63)
++- == Final Plan ==
+   * Sort (39)
+   +- AQEShuffleRead (38)
+      +- ShuffleQueryStage (37), Statistics(sizeInBytes=352.0 B, rowCount=5)
+         +- Exchange (36)
+            +- * Project (35)
+               +- * HashAggregate (34)
+                  +- AQEShuffleRead (33)
+                     +- ShuffleQueryStage (32), Statistics(sizeInBytes=272.0 B, rowCount=5)
+                        +- Exchange (31)
+                           +- * HashAggregate (30)
+                              +- * HashAggregate (29)
+                                 +- AQEShuffleRead (28)
+                                    +- ShuffleQueryStage (27), Statistics(sizeInBytes=2.4 KiB, rowCount=46)
+                                       +- Exchange (26)
+                                          +- * HashAggregate (25)
+                                             +- * Project (24)
+                                                +- * BroadcastHashJoin Inner BuildRight (23)
+                                                   :- * Project (17)
+                                                   :  +- * BroadcastHashJoin Inner BuildRight (16)
+                                                   :     :- * Project (10)
+                                                   :     :  +- * BroadcastHashJoin Inner BuildRight (9)
+                                                   :     :     :- * Filter (3)
+                                                   :     :     :  +- * ColumnarToRow (2)
+                                                   :     :     :     +- Scan parquet  (1)
+                                                   :     :     +- BroadcastQueryStage (8), Statistics(sizeInBytes=1024.1 KiB, rowCount=15)
+                                                   :     :        +- BroadcastExchange (7)
+                                                   :     :           +- * Filter (6)
+                                                   :     :              +- * ColumnarToRow (5)
+                                                   :     :                 +- Scan parquet  (4)
+                                                   :     +- BroadcastQueryStage (15), Statistics(sizeInBytes=1024.0 KiB, rowCount=4)
+                                                   :        +- BroadcastExchange (14)
+                                                   :           +- * Filter (13)
+                                                   :              +- * ColumnarToRow (12)
+                                                   :                 +- Scan parquet  (11)
+                                                   +- BroadcastQueryStage (22), Statistics(sizeInBytes=1024.0 KiB, rowCount=3)
+                                                      +- BroadcastExchange (21)
+                                                         +- * Filter (20)
+                                                            +- * ColumnarToRow (19)
+                                                               +- Scan parquet  (18)
++- == Initial Plan ==
+   Sort (62)
+   +- Exchange (61)
+      +- Project (60)
+         +- HashAggregate (59)
+            +- Exchange (58)
+               +- HashAggregate (57)
+                  +- HashAggregate (56)
+                     +- Exchange (55)
+                        +- HashAggregate (54)
+                           +- Project (53)
+                              +- BroadcastHashJoin Inner BuildRight (52)
+                                 :- Project (49)
+                                 :  +- BroadcastHashJoin Inner BuildRight (48)
+                                 :     :- Project (45)
+                                 :     :  +- BroadcastHashJoin Inner BuildRight (44)
+                                 :     :     :- Filter (41)
+                                 :     :     :  +- Scan parquet  (40)
+                                 :     :     +- BroadcastExchange (43)
+                                 :     :        +- Filter (42)
+                                 :     :           +- Scan parquet  (4)
+                                 :     +- BroadcastExchange (47)
+                                 :        +- Filter (46)
+                                 :           +- Scan parquet  (11)
+                                 +- BroadcastExchange (51)
+                                    +- Filter (50)
+                                       +- Scan parquet  (18)
+
+
+(1) Scan parquet 
+Output [5]: [sk_funcion#5389, sk_tipo_entrada#5391L, sk_canal#5392L, precio#5393L, cantidad#5394]
+Batched: true
+Location: InMemoryFileIndex [file:/C:/Users/dniel/Rabbit/proyectos/repo_teatro/data/gold/hecho_venta_boleta]
+PushedFilters: [IsNotNull(sk_funcion), IsNotNull(sk_canal), IsNotNull(sk_tipo_entrada)]
+ReadSchema: struct<sk_funcion:int,sk_tipo_entrada:bigint,sk_canal:bigint,precio:bigint,cantidad:int>
+
+(2) ColumnarToRow [codegen id : 4]
+Input [5]: [sk_funcion#5389, sk_tipo_entrada#5391L, sk_canal#5392L, precio#5393L, cantidad#5394]
+
+(3) Filter [codegen id : 4]
+Input [5]: [sk_funcion#5389, sk_tipo_entrada#5391L, sk_canal#5392L, precio#5393L, cantidad#5394]
+Condition : ((isnotnull(sk_funcion#5389) AND isnotnull(sk_canal#5392L)) AND isnotnull(sk_tipo_entrada#5391L))
+
+(4) Scan parquet 
+Output [2]: [sk_funcion#5402, obra#5403]
+Batched: true
+Location: InMemoryFileIndex [file:/C:/Users/dniel/Rabbit/proyectos/repo_teatro/data/gold/dim_funcion]
+PushedFilters: [IsNotNull(sk_funcion)]
+ReadSchema: struct<sk_funcion:int,obra:string>
+
+(5) ColumnarToRow [codegen id : 1]
+Input [2]: [sk_funcion#5402, obra#5403]
+
+(6) Filter [codegen id : 1]
+Input [2]: [sk_funcion#5402, obra#5403]
+Condition : isnotnull(sk_funcion#5402)
+
+(7) BroadcastExchange
+Input [2]: [sk_funcion#5402, obra#5403]
+Arguments: HashedRelationBroadcastMode(List(cast(input[0, int, false] as bigint)),false), [plan_id=3453]
+
+(8) BroadcastQueryStage
+Output [2]: [sk_funcion#5402, obra#5403]
+Arguments: 0
+
+(9) BroadcastHashJoin [codegen id : 4]
+Left keys [1]: [sk_funcion#5389]
+Right keys [1]: [sk_funcion#5402]
+Join type: Inner
+Join condition: None
+
+(10) Project [codegen id : 4]
+Output [6]: [sk_funcion#5389, sk_tipo_entrada#5391L, sk_canal#5392L, precio#5393L, cantidad#5394, obra#5403]
+Input [7]: [sk_funcion#5389, sk_tipo_entrada#5391L, sk_canal#5392L, precio#5393L, cantidad#5394, sk_funcion#5402, obra#5403]
+
+(11) Scan parquet 
+Output [1]: [sk_canal#5428L]
+Batched: true
+Location: InMemoryFileIndex [file:/C:/Users/dniel/Rabbit/proyectos/repo_teatro/data/gold/dim_canal]
+PushedFilters: [IsNotNull(sk_canal)]
+ReadSchema: struct<sk_canal:bigint>
+
+(12) ColumnarToRow [codegen id : 2]
+Input [1]: [sk_canal#5428L]
+
+(13) Filter [codegen id : 2]
+Input [1]: [sk_canal#5428L]
+Condition : isnotnull(sk_canal#5428L)
+
+(14) BroadcastExchange
+Input [1]: [sk_canal#5428L]
+Arguments: HashedRelationBroadcastMode(List(input[0, bigint, false]),false), [plan_id=3470]
+
+(15) BroadcastQueryStage
+Output [1]: [sk_canal#5428L]
+Arguments: 1
+
+(16) BroadcastHashJoin [codegen id : 4]
+Left keys [1]: [sk_canal#5392L]
+Right keys [1]: [sk_canal#5428L]
+Join type: Inner
+Join condition: None
+
+(17) Project [codegen id : 4]
+Output [5]: [sk_funcion#5389, sk_tipo_entrada#5391L, precio#5393L, cantidad#5394, obra#5403]
+Input [7]: [sk_funcion#5389, sk_tipo_entrada#5391L, sk_canal#5392L, precio#5393L, cantidad#5394, obra#5403, sk_canal#5428L]
+
+(18) Scan parquet 
+Output [1]: [sk_tipo_entrada#5446L]
+Batched: true
+Location: InMemoryFileIndex [file:/C:/Users/dniel/Rabbit/proyectos/repo_teatro/data/gold/dim_tipo_entrada]
+PushedFilters: [IsNotNull(sk_tipo_entrada)]
+ReadSchema: struct<sk_tipo_entrada:bigint>
+
+(19) ColumnarToRow [codegen id : 3]
+Input [1]: [sk_tipo_entrada#5446L]
+
+(20) Filter [codegen id : 3]
+Input [1]: [sk_tipo_entrada#5446L]
+Condition : isnotnull(sk_tipo_entrada#5446L)
+
+(21) BroadcastExchange
+Input [1]: [sk_tipo_entrada#5446L]
+Arguments: HashedRelationBroadcastMode(List(input[0, bigint, false]),false), [plan_id=3487]
+
+(22) BroadcastQueryStage
+Output [1]: [sk_tipo_entrada#5446L]
+Arguments: 2
+
+(23) BroadcastHashJoin [codegen id : 4]
+Left keys [1]: [sk_tipo_entrada#5391L]
+Right keys [1]: [sk_tipo_entrada#5446L]
+Join type: Inner
+Join condition: None
+
+(24) Project [codegen id : 4]
+Output [4]: [sk_funcion#5389, precio#5393L, cantidad#5394, obra#5403]
+Input [6]: [sk_funcion#5389, sk_tipo_entrada#5391L, precio#5393L, cantidad#5394, obra#5403, sk_tipo_entrada#5446L]
+
+(25) HashAggregate [codegen id : 4]
+Input [4]: [sk_funcion#5389, precio#5393L, cantidad#5394, obra#5403]
+Keys [2]: [obra#5403, sk_funcion#5389]
+Functions [2]: [partial_sum(cantidad#5394), partial_sum(precio#5393L)]
+Aggregate Attributes [2]: [sum(cantidad#5394)#5501L, sum(precio#5393L)#5503L]
+Results [4]: [obra#5403, sk_funcion#5389, sum#5680L, sum#5682L]
+
+(26) Exchange
+Input [4]: [obra#5403, sk_funcion#5389, sum#5680L, sum#5682L]
+Arguments: hashpartitioning(obra#5403, sk_funcion#5389, 4), ENSURE_REQUIREMENTS, [plan_id=3722]
+
+(27) ShuffleQueryStage
+Output [4]: [obra#5403, sk_funcion#5389, sum#5680L, sum#5682L]
+Arguments: 3
+
+(28) AQEShuffleRead
+Input [4]: [obra#5403, sk_funcion#5389, sum#5680L, sum#5682L]
+Arguments: coalesced
+
+(29) HashAggregate [codegen id : 5]
+Input [4]: [obra#5403, sk_funcion#5389, sum#5680L, sum#5682L]
+Keys [2]: [obra#5403, sk_funcion#5389]
+Functions [2]: [merge_sum(cantidad#5394), merge_sum(precio#5393L)]
+Aggregate Attributes [2]: [sum(cantidad#5394)#5501L, sum(precio#5393L)#5503L]
+Results [4]: [obra#5403, sk_funcion#5389, sum#5680L, sum#5682L]
+
+(30) HashAggregate [codegen id : 5]
+Input [4]: [obra#5403, sk_funcion#5389, sum#5680L, sum#5682L]
+Keys [1]: [obra#5403]
+Functions [3]: [merge_sum(cantidad#5394), merge_sum(precio#5393L), partial_count(distinct sk_funcion#5389)]
+Aggregate Attributes [3]: [sum(cantidad#5394)#5501L, sum(precio#5393L)#5503L, count(sk_funcion#5389)#5506L]
+Results [4]: [obra#5403, sum#5680L, sum#5682L, count#5685L]
+
+(31) Exchange
+Input [4]: [obra#5403, sum#5680L, sum#5682L, count#5685L]
+Arguments: hashpartitioning(obra#5403, 4), ENSURE_REQUIREMENTS, [plan_id=3784]
+
+(32) ShuffleQueryStage
+Output [4]: [obra#5403, sum#5680L, sum#5682L, count#5685L]
+Arguments: 4
+
+(33) AQEShuffleRead
+Input [4]: [obra#5403, sum#5680L, sum#5682L, count#5685L]
+Arguments: coalesced
+
+(34) HashAggregate [codegen id : 6]
+Input [4]: [obra#5403, sum#5680L, sum#5682L, count#5685L]
+Keys [1]: [obra#5403]
+Functions [3]: [sum(cantidad#5394), sum(precio#5393L), count(distinct sk_funcion#5389)]
+Aggregate Attributes [3]: [sum(cantidad#5394)#5501L, sum(precio#5393L)#5503L, count(sk_funcion#5389)#5506L]
+Results [4]: [obra#5403, sum(cantidad#5394)#5501L AS boletas#5502L, sum(precio#5393L)#5503L AS ingreso_cop#5504L, count(sk_funcion#5389)#5506L AS funciones#5505L]
+
+(35) Project [codegen id : 6]
+Output [6]: [obra#5403, boletas#5502L, ingreso_cop#5504L, funciones#5505L, round((cast(ingreso_cop#5504L as double) / cast(funciones#5505L as double)), 0) AS ingreso_promedio_funcion#5511, round(((cast(ingreso_cop#5504L as double) / 3.2855E7) * 100.0), 1) AS participacion_ingreso_pct#5517]
+Input [4]: [obra#5403, boletas#5502L, ingreso_cop#5504L, funciones#5505L]
+
+(36) Exchange
+Input [6]: [obra#5403, boletas#5502L, ingreso_cop#5504L, funciones#5505L, ingreso_promedio_funcion#5511, participacion_ingreso_pct#5517]
+Arguments: rangepartitioning(ingreso_cop#5504L DESC NULLS LAST, 4), ENSURE_REQUIREMENTS, [plan_id=3822]
+
+(37) ShuffleQueryStage
+Output [6]: [obra#5403, boletas#5502L, ingreso_cop#5504L, funciones#5505L, ingreso_promedio_funcion#5511, participacion_ingreso_pct#5517]
+Arguments: 5
+
+(38) AQEShuffleRead
+Input [6]: [obra#5403, boletas#5502L, ingreso_cop#5504L, funciones#5505L, ingreso_promedio_funcion#5511, participacion_ingreso_pct#5517]
+Arguments: coalesced
+
+(39) Sort [codegen id : 7]
+Input [6]: [obra#5403, boletas#5502L, ingreso_cop#5504L, funciones#5505L, ingreso_promedio_funcion#5511, participacion_ingreso_pct#5517]
+Arguments: [ingreso_cop#5504L DESC NULLS LAST], true, 0
+
+(40) Scan parquet 
+Output [5]: [sk_funcion#5389, sk_tipo_entrada#5391L, sk_canal#5392L, precio#5393L, cantidad#5394]
+Batched: true
+Location: InMemoryFileIndex [file:/C:/Users/dniel/Rabbit/proyectos/repo_teatro/data/gold/hecho_venta_boleta]
+PushedFilters: [IsNotNull(sk_funcion), IsNotNull(sk_canal), IsNotNull(sk_tipo_entrada)]
+ReadSchema: struct<sk_funcion:int,sk_tipo_entrada:bigint,sk_canal:bigint,precio:bigint,cantidad:int>
+
+(41) Filter
+Input [5]: [sk_funcion#5389, sk_tipo_entrada#5391L, sk_canal#5392L, precio#5393L, cantidad#5394]
+Condition : ((isnotnull(sk_funcion#5389) AND isnotnull(sk_canal#5392L)) AND isnotnull(sk_tipo_entrada#5391L))
+
+(42) Filter
+Input [2]: [sk_funcion#5402, obra#5403]
+Condition : isnotnull(sk_funcion#5402)
+
+(43) BroadcastExchange
+Input [2]: [sk_funcion#5402, obra#5403]
+Arguments: HashedRelationBroadcastMode(List(cast(input[0, int, false] as bigint)),false), [plan_id=3380]
+
+(44) BroadcastHashJoin
+Left keys [1]: [sk_funcion#5389]
+Right keys [1]: [sk_funcion#5402]
+Join type: Inner
+Join condition: None
+
+(45) Project
+Output [6]: [sk_funcion#5389, sk_tipo_entrada#5391L, sk_canal#5392L, precio#5393L, cantidad#5394, obra#5403]
+Input [7]: [sk_funcion#5389, sk_tipo_entrada#5391L, sk_canal#5392L, precio#5393L, cantidad#5394, sk_funcion#5402, obra#5403]
+
+(46) Filter
+Input [1]: [sk_canal#5428L]
+Condition : isnotnull(sk_canal#5428L)
+
+(47) BroadcastExchange
+Input [1]: [sk_canal#5428L]
+Arguments: HashedRelationBroadcastMode(List(input[0, bigint, false]),false), [plan_id=3384]
+
+(48) BroadcastHashJoin
+Left keys [1]: [sk_canal#5392L]
+Right keys [1]: [sk_canal#5428L]
+Join type: Inner
+Join condition: None
+
+(49) Project
+Output [5]: [sk_funcion#5389, sk_tipo_entrada#5391L, precio#5393L, cantidad#5394, obra#5403]
+Input [7]: [sk_funcion#5389, sk_tipo_entrada#5391L, sk_canal#5392L, precio#5393L, cantidad#5394, obra#5403, sk_canal#5428L]
+
+(50) Filter
+Input [1]: [sk_tipo_entrada#5446L]
+Condition : isnotnull(sk_tipo_entrada#5446L)
+
+(51) BroadcastExchange
+Input [1]: [sk_tipo_entrada#5446L]
+Arguments: HashedRelationBroadcastMode(List(input[0, bigint, false]),false), [plan_id=3388]
+
+(52) BroadcastHashJoin
+Left keys [1]: [sk_tipo_entrada#5391L]
+Right keys [1]: [sk_tipo_entrada#5446L]
+Join type: Inner
+Join condition: None
+
+(53) Project
+Output [4]: [sk_funcion#5389, precio#5393L, cantidad#5394, obra#5403]
+Input [6]: [sk_funcion#5389, sk_tipo_entrada#5391L, precio#5393L, cantidad#5394, obra#5403, sk_tipo_entrada#5446L]
+
+(54) HashAggregate
+Input [4]: [sk_funcion#5389, precio#5393L, cantidad#5394, obra#5403]
+Keys [2]: [obra#5403, sk_funcion#5389]
+Functions [2]: [partial_sum(cantidad#5394), partial_sum(precio#5393L)]
+Aggregate Attributes [2]: [sum(cantidad#5394)#5501L, sum(precio#5393L)#5503L]
+Results [4]: [obra#5403, sk_funcion#5389, sum#5680L, sum#5682L]
+
+(55) Exchange
+Input [4]: [obra#5403, sk_funcion#5389, sum#5680L, sum#5682L]
+Arguments: hashpartitioning(obra#5403, sk_funcion#5389, 4), ENSURE_REQUIREMENTS, [plan_id=3393]
+
+(56) HashAggregate
+Input [4]: [obra#5403, sk_funcion#5389, sum#5680L, sum#5682L]
+Keys [2]: [obra#5403, sk_funcion#5389]
+Functions [2]: [merge_sum(cantidad#5394), merge_sum(precio#5393L)]
+Aggregate Attributes [2]: [sum(cantidad#5394)#5501L, sum(precio#5393L)#5503L]
+Results [4]: [obra#5403, sk_funcion#5389, sum#5680L, sum#5682L]
+
+(57) HashAggregate
+Input [4]: [obra#5403, sk_funcion#5389, sum#5680L, sum#5682L]
+Keys [1]: [obra#5403]
+Functions [3]: [merge_sum(cantidad#5394), merge_sum(precio#5393L), partial_count(distinct sk_funcion#5389)]
+Aggregate Attributes [3]: [sum(cantidad#5394)#5501L, sum(precio#5393L)#5503L, count(sk_funcion#5389)#5506L]
+Results [4]: [obra#5403, sum#5680L, sum#5682L, count#5685L]
+
+(58) Exchange
+Input [4]: [obra#5403, sum#5680L, sum#5682L, count#5685L]
+Arguments: hashpartitioning(obra#5403, 4), ENSURE_REQUIREMENTS, [plan_id=3397]
+
+(59) HashAggregate
+Input [4]: [obra#5403, sum#5680L, sum#5682L, count#5685L]
+Keys [1]: [obra#5403]
+Functions [3]: [sum(cantidad#5394), sum(precio#5393L), count(distinct sk_funcion#5389)]
+Aggregate Attributes [3]: [sum(cantidad#5394)#5501L, sum(precio#5393L)#5503L, count(sk_funcion#5389)#5506L]
+Results [4]: [obra#5403, sum(cantidad#5394)#5501L AS boletas#5502L, sum(precio#5393L)#5503L AS ingreso_cop#5504L, count(sk_funcion#5389)#5506L AS funciones#5505L]
+
+(60) Project
+Output [6]: [obra#5403, boletas#5502L, ingreso_cop#5504L, funciones#5505L, round((cast(ingreso_cop#5504L as double) / cast(funciones#5505L as double)), 0) AS ingreso_promedio_funcion#5511, round(((cast(ingreso_cop#5504L as double) / 3.2855E7) * 100.0), 1) AS participacion_ingreso_pct#5517]
+Input [4]: [obra#5403, boletas#5502L, ingreso_cop#5504L, funciones#5505L]
+
+(61) Exchange
+Input [6]: [obra#5403, boletas#5502L, ingreso_cop#5504L, funciones#5505L, ingreso_promedio_funcion#5511, participacion_ingreso_pct#5517]
+Arguments: rangepartitioning(ingreso_cop#5504L DESC NULLS LAST, 4), ENSURE_REQUIREMENTS, [plan_id=3401]
+
+(62) Sort
+Input [6]: [obra#5403, boletas#5502L, ingreso_cop#5504L, funciones#5505L, ingreso_promedio_funcion#5511, participacion_ingreso_pct#5517]
+Arguments: [ingreso_cop#5504L DESC NULLS LAST], true, 0
+
+(63) AdaptiveSparkPlan
+Output [6]: [obra#5403, boletas#5502L, ingreso_cop#5504L, funciones#5505L, ingreso_promedio_funcion#5511, participacion_ingreso_pct#5517]
+Arguments: isFinalPlan=true
+

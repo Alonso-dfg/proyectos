@@ -1,0 +1,4 @@
+factor,registros,pandas_s,pyspark_s,mismo_resultado
+x1,1194,0.028,0.6,True
+x100,119400,0.022,0.3,True
+x1000,1194000,0.099,0.321,True

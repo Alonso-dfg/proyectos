@@ -1,0 +1,2 @@
+{"id_venta": "1052", "id_funcion": "1", "obra": "La Casa de Bernarda Alba", "fecha_funcion": "2026-07-01", "hora_funcion": "19:00", "tipo_entrada": "Preferencial", "canal_venta": "Taquilla", "precio": "40000", "evento_ts": "2026-06-19T04:45:11", "producido_ts": "2026-11-04T21:15:30.151"}
+{"id_venta": "1025", "id_funcion": "1", "obra": "La Casa de Bernarda Alba", "fecha_funcion": "2026-07-01", "hora_funcion": "19:00", "tipo_entrada": "Preferencial", "canal_venta": "En linea", "precio": "40000", "evento_ts": "2026-06-19T09:48:09", "producido_ts": "2026-11-04T21:15:30.151"}

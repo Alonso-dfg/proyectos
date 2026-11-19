@@ -1,0 +1,33 @@
+{
+  "destino": "archivos",
+  "eventos_publicados": 1222,
+  "lotes": 44,
+  "por_tipo_llegada": {
+    "normal": 1139,
+    "tardio_tolerado": 69,
+    "reintento_duplicado": 8,
+    "muy_tardio": 6
+  },
+  "ids_muy_tardios": [
+    1286,
+    1314,
+    1431,
+    1561,
+    1562,
+    2114
+  ],
+  "ids_duplicados": [
+    1349,
+    1359,
+    1396,
+    2011,
+    2024,
+    2130,
+    2157,
+    2158
+  ],
+  "rango_evento_ts": [
+    "2026-06-17T19:35:13",
+    "2026-07-29T18:39:57"
+  ]
+}

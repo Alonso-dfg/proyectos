@@ -1,0 +1,123 @@
+Picked up JAVA_TOOL_OPTIONS: -Djavax.net.ssl.trustStore=/etc/ssl/certs/java/cacerts -Djavax.net.ssl.trustStoreType=JKS -Dhttps.proxyHost=127.0.0.1 -Dhttps.proxyPort=43011 -Dhttp.nonProxyHosts=localhost|127.0.0.1|::1|127.*|0.*|::|169.254.*|api.anthropic.com|api-staging.anthropic.com|api-pr-preview.anthropic.com|mcp-proxy.anthropic.com|mcp-proxy-staging.anthropic.com|registry.npmjs.org|jsr.io|npm.jsr.io|pypi.org|files.pythonhosted.org|index.crates.io|proxy.golang.org|host.docker.internal|10.*|172.16.*|172.17.*|172.18.*|172.19.*|172.20.*|172.21.*|172.22.*|172.23.*|172.24.*|172.25.*|172.26.*|172.27.*|172.28.*|172.29.*|172.30.*|172.31.*|192.168.*|100.64.0.0/10|*.svc.cluster.local|*.svc.cluster.local -Djdk.http.auth.tunneling.disabledSchemes= -Djdk.http.auth.proxying.disabledSchemes=
+Picked up JAVA_TOOL_OPTIONS: -Djavax.net.ssl.trustStore=/etc/ssl/certs/java/cacerts -Djavax.net.ssl.trustStoreType=JKS -Dhttps.proxyHost=127.0.0.1 -Dhttps.proxyPort=43011 -Dhttp.nonProxyHosts=localhost|127.0.0.1|::1|127.*|0.*|::|169.254.*|api.anthropic.com|api-staging.anthropic.com|api-pr-preview.anthropic.com|mcp-proxy.anthropic.com|mcp-proxy-staging.anthropic.com|registry.npmjs.org|jsr.io|npm.jsr.io|pypi.org|files.pythonhosted.org|index.crates.io|proxy.golang.org|host.docker.internal|10.*|172.16.*|172.17.*|172.18.*|172.19.*|172.20.*|172.21.*|172.22.*|172.23.*|172.24.*|172.25.*|172.26.*|172.27.*|172.28.*|172.29.*|172.30.*|172.31.*|192.168.*|100.64.0.0/10|*.svc.cluster.local|*.svc.cluster.local -Djdk.http.auth.tunneling.disabledSchemes= -Djdk.http.auth.proxying.disabledSchemes=
+26/11/04 20:52:20 WARN Utils: Your hostname, vm resolves to a loopback address: 127.0.0.1; using 192.0.2.2 instead (on interface eth0)
+26/11/04 20:52:20 WARN Utils: Set SPARK_LOCAL_IP if you need to bind to another address
+Setting default log level to "WARN".
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+26/11/04 20:52:20 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+Streaming iniciado · fuente=archivos · watermark=1 day · contrato v3
+26/11/04 20:52:22 WARN ResolveWriteToStream: spark.sql.adaptive.enabled is not supported in streaming DataFrames/Datasets and will be disabled.
+26/11/04 20:52:23 WARN ResolveWriteToStream: spark.sql.adaptive.enabled is not supported in streaming DataFrames/Datasets and will be disabled.
+26/11/04 20:52:23 WARN ResolveWriteToStream: spark.sql.adaptive.enabled is not supported in streaming DataFrames/Datasets and will be disabled.
+26/11/04 20:52:34 WARN GarbageCollectionMetrics: To enable non-built-in garbage collector(s) List(G1 Concurrent GC), users should configure it(them) to spark.eventLog.gcMetrics.youngGenerationGarbageCollectors or spark.eventLog.gcMetrics.oldGenerationGarbageCollectors
+26/11/04 20:52:49 WARN ProcessingTimeExecutor: Current batch is falling behind. The trigger interval is 2000 milliseconds, but spent 3303 milliseconds
+26/11/04 20:52:50 WARN ProcessingTimeExecutor: Current batch is falling behind. The trigger interval is 2000 milliseconds, but spent 4174 milliseconds
+[silver] lote   0 |   1 eventos |   1 válidos | 0 cuarentena | latencia prom 1.531 s
+26/11/04 20:52:51 WARN ProcessingTimeExecutor: Current batch is falling behind. The trigger interval is 2000 milliseconds, but spent 5555 milliseconds
+[silver] lote   1 |   5 eventos |   5 válidos | 0 cuarentena | latencia prom 5.589 s
+[silver] lote   2 |   2 eventos |   2 válidos | 0 cuarentena | latencia prom 5.848 s
+[silver] lote   3 |  14 eventos |  14 válidos | 0 cuarentena | latencia prom 5.498 s
+[silver] lote   4 |  10 eventos |   9 válidos | 1 cuarentena | latencia prom 5.502 s
+[silver] lote   5 |  17 eventos |  16 válidos | 1 cuarentena | latencia prom 5.99 s
+[silver] lote   6 |  13 eventos |  12 válidos | 1 cuarentena | latencia prom 6.481 s
+[silver] lote   7 |  23 eventos |  23 válidos | 0 cuarentena | latencia prom 6.98 s
+[silver] lote   8 |  30 eventos |  30 válidos | 0 cuarentena | latencia prom 7.483 s
+[silver] lote   9 |  34 eventos |  34 válidos | 0 cuarentena | latencia prom 7.984 s
+[silver] lote  10 |  27 eventos |  26 válidos | 1 cuarentena | latencia prom 8.484 s
+[silver] lote  11 |  25 eventos |  25 válidos | 0 cuarentena | latencia prom 8.972 s
+[silver] lote  12 |  25 eventos |  25 válidos | 0 cuarentena | latencia prom 9.475 s
+[silver] lote  13 |  48 eventos |  48 válidos | 0 cuarentena | latencia prom 9.966 s
+[silver] lote  14 |  32 eventos |  32 válidos | 0 cuarentena | latencia prom 10.469 s
+[silver] lote  15 |  28 eventos |  26 válidos | 2 cuarentena | latencia prom 10.972 s
+[silver] lote  16 |  43 eventos |  43 válidos | 0 cuarentena | latencia prom 11.468 s
+[silver] lote  17 |  34 eventos |  33 válidos | 1 cuarentena | latencia prom 11.964 s
+[silver] lote  18 |  22 eventos |  22 válidos | 0 cuarentena | latencia prom 12.47 s
+[silver] lote  19 |  35 eventos |  35 válidos | 0 cuarentena | latencia prom 12.994 s
+[ALERTA] Función 4 (Bodas de Sangre, 2026-07-07) al 95.3 % de ocupación
+[silver] lote  20 |  36 eventos |  36 válidos | 0 cuarentena | latencia prom 13.471 s
+[silver] lote  21 |  26 eventos |  24 válidos | 2 cuarentena | latencia prom 13.966 s
+[silver] lote  22 |  32 eventos |  32 válidos | 0 cuarentena | latencia prom 14.47 s
+[silver] lote  23 |  27 eventos |  26 válidos | 1 cuarentena | latencia prom 14.963 s
+[silver] lote  24 |  39 eventos |  38 válidos | 1 cuarentena | latencia prom 15.465 s
+[silver] lote  25 |  36 eventos |  35 válidos | 1 cuarentena | latencia prom 15.978 s
+[silver] lote  26 |  44 eventos |  44 válidos | 0 cuarentena | latencia prom 16.459 s
+[silver] lote  27 |  39 eventos |  39 válidos | 0 cuarentena | latencia prom 16.96 s
+[silver] lote  28 |  54 eventos |  53 válidos | 1 cuarentena | latencia prom 17.462 s
+[silver] lote  29 |  53 eventos |  53 válidos | 0 cuarentena | latencia prom 17.967 s
+[silver] lote  30 |  56 eventos |  56 válidos | 0 cuarentena | latencia prom 18.445 s
+[silver] lote  31 |  33 eventos |  32 válidos | 1 cuarentena | latencia prom 18.947 s
+[silver] lote  32 |  37 eventos |  37 válidos | 0 cuarentena | latencia prom 19.447 s
+[silver] lote  33 |  35 eventos |  34 válidos | 1 cuarentena | latencia prom 19.952 s
+[silver] lote  34 |  32 eventos |  31 válidos | 1 cuarentena | latencia prom 20.451 s
+[silver] lote  35 |  41 eventos |  41 válidos | 0 cuarentena | latencia prom 20.943 s
+[silver] lote  36 |  35 eventos |  35 válidos | 0 cuarentena | latencia prom 21.443 s
+[silver] lote  37 |  20 eventos |  20 válidos | 0 cuarentena | latencia prom 21.927 s
+[silver] lote  38 |  31 eventos |  30 válidos | 1 cuarentena | latencia prom 22.434 s
+[silver] lote  39 |  13 eventos |  11 válidos | 2 cuarentena | latencia prom 22.941 s
+[ALERTA] Función 14 (La Celestina, 2026-07-27) al 92.0 % de ocupación
+[silver] lote  40 |  10 eventos |  10 válidos | 0 cuarentena | latencia prom 23.426 s
+[silver] lote  41 |   3 eventos |   3 válidos | 0 cuarentena | latencia prom 23.928 s
+[silver] lote  42 |   8 eventos |   7 válidos | 1 cuarentena | latencia prom 24.428 s
+[silver] lote  43 |   1 eventos |   1 válidos | 0 cuarentena | latencia prom 24.914 s
+{
+  "fecha_ejecucion": "2026-11-04T20:54:20",
+  "fuente": "archivos",
+  "watermark": "1 day",
+  "trigger_s": 2,
+  "version_contrato": "v3",
+  "duracion_total_s": 117.2,
+  "consultas": {
+    "silver": {
+      "microlotes_con_datos": 44,
+      "filas_leidas": 1222,
+      "filas_por_segundo_procesadas_prom": 24.5,
+      "duracion_trigger_ms_prom": 1256,
+      "watermark_final": "2026-07-28T23:39:57.000Z",
+      "filas_estado_final": 12,
+      "filas_descartadas_por_watermark": 5
+    },
+    "gold_ocupacion": {
+      "microlotes_con_datos": 44,
+      "filas_leidas": 1222,
+      "filas_por_segundo_procesadas_prom": 38.1,
+      "duracion_trigger_ms_prom": 873,
+      "watermark_final": "2026-07-28T23:39:57.000Z",
+      "filas_estado_final": 27,
+      "filas_descartadas_por_watermark": 5
+    },
+    "gold_ventanas": {
+      "microlotes_con_datos": 44,
+      "filas_leidas": 1222,
+      "filas_por_segundo_procesadas_prom": 34.1,
+      "duracion_trigger_ms_prom": 949,
+      "watermark_final": "2026-07-28T23:39:57.000Z",
+      "filas_estado_final": 17,
+      "filas_descartadas_por_watermark": 5
+    }
+  },
+  "conciliacion_con_batch": {
+    "boletas_streaming": 1189,
+    "ingreso_streaming_cop": 32730000,
+    "cuarentena_streaming": 20,
+    "latencia_s": {
+      "prom": 14.822,
+      "p50": 15.465,
+      "p95": 22.434,
+      "max": 24.914
+    },
+    "eventos_publicados": 1222,
+    "boletas_batch": 1194,
+    "ingreso_batch_cop": 32855000,
+    "ids_solo_en_batch": [
+      1286,
+      1314,
+      1431,
+      1561,
+      1562
+    ],
+    "ids_solo_en_streaming": [],
+    "faltantes_explicados_por_eventos_muy_tardios": true,
+    "duplicados_en_streaming": 0,
+    "ingreso_a_recuperar_en_batch_cop": 125000
+  }
+}

@@ -1,0 +1,5 @@
+__pycache__/
+data/stream/_checkpoints/
+data/tmp_escalado/
+*.crc
+.DS_Store

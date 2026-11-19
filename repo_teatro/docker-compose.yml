@@ -1,0 +1,48 @@
+# Apache Kafka en modo KRaft (sin ZooKeeper), un solo broker, para el
+# laboratorio de streaming del proyecto del teatro.
+#
+#   docker compose up -d            # levanta Kafka y crea el tópico
+#   docker compose logs -f kafka    # ver el broker
+#   docker compose down -v          # apagar y borrar datos
+#
+# Tópico: ventas_boletas · 3 particiones · retención 7 días.
+# La llave de cada mensaje es id_funcion -> las ventas de una misma función
+# quedan en la misma partición y conservan su orden.
+services:
+  kafka:
+    image: apache/kafka:3.8.0
+    container_name: kafka-teatro
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_NODE_ID: 1
+      KAFKA_PROCESS_ROLES: broker,controller
+      KAFKA_LISTENERS: PLAINTEXT://:9092,CONTROLLER://:9093
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@localhost:9093
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_NUM_PARTITIONS: 3
+      KAFKA_LOG_RETENTION_HOURS: 168
+    healthcheck:
+      test: ["CMD-SHELL", "/opt/kafka/bin/kafka-topics.sh --bootstrap-server localhost:9092 --list"]
+      interval: 10s
+      timeout: 10s
+      retries: 10
+
+  crear-topico:
+    image: apache/kafka:3.8.0
+    depends_on:
+      kafka:
+        condition: service_healthy
+    entrypoint: ["/bin/sh", "-c"]
+    command: >
+      "/opt/kafka/bin/kafka-topics.sh --bootstrap-server kafka:9092
+      --create --if-not-exists --topic ventas_boletas
+      --partitions 3 --replication-factor 1
+      --config retention.ms=604800000 &&
+      /opt/kafka/bin/kafka-topics.sh --bootstrap-server kafka:9092
+      --describe --topic ventas_boletas"

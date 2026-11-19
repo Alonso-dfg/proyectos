@@ -1,0 +1,78 @@
+Publicando 1222 eventos en 44 lotes -> archivos
+  lote 001 | día de llegada 2026-06-17 |   1 eventos | {'normal': 1}
+  lote 002 | día de llegada 2026-06-18 |   5 eventos | {'normal': 5}
+  lote 003 | día de llegada 2026-06-19 |   2 eventos | {'normal': 2}
+  lote 004 | día de llegada 2026-06-20 |  14 eventos | {'normal': 13, 'tardio_tolerado': 1}
+  lote 005 | día de llegada 2026-06-21 |  10 eventos | {'normal': 10}
+  lote 006 | día de llegada 2026-06-22 |  17 eventos | {'normal': 15, 'tardio_tolerado': 2}
+  lote 007 | día de llegada 2026-06-23 |  13 eventos | {'tardio_tolerado': 2, 'normal': 11}
+  lote 008 | día de llegada 2026-06-24 |  23 eventos | {'normal': 23}
+  lote 009 | día de llegada 2026-06-25 |  30 eventos | {'normal': 28, 'tardio_tolerado': 2}
+  lote 010 | día de llegada 2026-06-26 |  34 eventos | {'normal': 33, 'tardio_tolerado': 1}
+  lote 011 | día de llegada 2026-06-27 |  28 eventos | {'normal': 27, 'reintento_duplicado': 1}
+  lote 012 | día de llegada 2026-06-28 |  25 eventos | {'normal': 24, 'tardio_tolerado': 1}
+  lote 013 | día de llegada 2026-06-29 |  25 eventos | {'normal': 24, 'tardio_tolerado': 1}
+  lote 014 | día de llegada 2026-06-30 |  48 eventos | {'normal': 47, 'tardio_tolerado': 1}
+  lote 015 | día de llegada 2026-07-01 |  32 eventos | {'tardio_tolerado': 2, 'normal': 30}
+  lote 016 | día de llegada 2026-07-02 |  28 eventos | {'tardio_tolerado': 2, 'normal': 26}
+  lote 017 | día de llegada 2026-07-03 |  43 eventos | {'normal': 40, 'tardio_tolerado': 3}
+  lote 018 | día de llegada 2026-07-04 |  35 eventos | {'normal': 31, 'tardio_tolerado': 3, 'reintento_duplicado': 1}
+  lote 019 | día de llegada 2026-07-05 |  23 eventos | {'normal': 21, 'tardio_tolerado': 1, 'reintento_duplicado': 1}
+  lote 020 | día de llegada 2026-07-06 |  35 eventos | {'tardio_tolerado': 7, 'normal': 28}
+  lote 021 | día de llegada 2026-07-07 |  37 eventos | {'normal': 33, 'tardio_tolerado': 3, 'muy_tardio': 1}
+  lote 022 | día de llegada 2026-07-08 |  26 eventos | {'normal': 25, 'tardio_tolerado': 1}
+  lote 023 | día de llegada 2026-07-09 |  33 eventos | {'normal': 31, 'tardio_tolerado': 1, 'muy_tardio': 1}
+  lote 024 | día de llegada 2026-07-10 |  28 eventos | {'normal': 27, 'muy_tardio': 1}
+  lote 025 | día de llegada 2026-07-11 |  39 eventos | {'normal': 37, 'tardio_tolerado': 2}
+  lote 026 | día de llegada 2026-07-12 |  36 eventos | {'tardio_tolerado': 2, 'normal': 34}
+  lote 027 | día de llegada 2026-07-13 |  45 eventos | {'normal': 39, 'tardio_tolerado': 5, 'muy_tardio': 1}
+  lote 028 | día de llegada 2026-07-14 |  39 eventos | {'normal': 38, 'tardio_tolerado': 1}
+  lote 029 | día de llegada 2026-07-15 |  55 eventos | {'normal': 54, 'muy_tardio': 1}
+  lote 030 | día de llegada 2026-07-16 |  54 eventos | {'normal': 49, 'tardio_tolerado': 4, 'reintento_duplicado': 1}
+  lote 031 | día de llegada 2026-07-17 |  56 eventos | {'normal': 53, 'tardio_tolerado': 3}
+  lote 032 | día de llegada 2026-07-18 |  34 eventos | {'normal': 29, 'tardio_tolerado': 4, 'reintento_duplicado': 1}
+  lote 033 | día de llegada 2026-07-19 |  37 eventos | {'tardio_tolerado': 3, 'normal': 34}
+  lote 034 | día de llegada 2026-07-20 |  35 eventos | {'normal': 32, 'tardio_tolerado': 3}
+  lote 035 | día de llegada 2026-07-21 |  33 eventos | {'normal': 31, 'reintento_duplicado': 1, 'tardio_tolerado': 1}
+  lote 036 | día de llegada 2026-07-22 |  41 eventos | {'normal': 40, 'tardio_tolerado': 1}
+  lote 037 | día de llegada 2026-07-23 |  36 eventos | {'normal': 31, 'tardio_tolerado': 4, 'reintento_duplicado': 1}
+  lote 038 | día de llegada 2026-07-24 |  20 eventos | {'normal': 19, 'tardio_tolerado': 1}
+  lote 039 | día de llegada 2026-07-25 |  32 eventos | {'normal': 30, 'tardio_tolerado': 1, 'reintento_duplicado': 1}
+  lote 040 | día de llegada 2026-07-26 |  13 eventos | {'normal': 13}
+  lote 041 | día de llegada 2026-07-27 |  10 eventos | {'normal': 10}
+  lote 042 | día de llegada 2026-07-28 |   3 eventos | {'normal': 3}
+  lote 043 | día de llegada 2026-07-29 |   8 eventos | {'normal': 8}
+  lote 044 | día de llegada 2026-08-02 |   1 eventos | {'muy_tardio': 1}
+{
+  "destino": "archivos",
+  "eventos_publicados": 1222,
+  "lotes": 44,
+  "por_tipo_llegada": {
+    "normal": 1139,
+    "tardio_tolerado": 69,
+    "reintento_duplicado": 8,
+    "muy_tardio": 6
+  },
+  "ids_muy_tardios": [
+    1286,
+    1314,
+    1431,
+    1561,
+    1562,
+    2114
+  ],
+  "ids_duplicados": [
+    1349,
+    1359,
+    1396,
+    2011,
+    2024,
+    2130,
+    2157,
+    2158
+  ],
+  "rango_evento_ts": [
+    "2026-06-17T19:35:13",
+    "2026-07-29T18:39:57"
+  ]
+}
