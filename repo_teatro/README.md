@@ -98,4 +98,4 @@ python3 src/productor_eventos.py --destino kafka --pausa 3    # terminal 2
 | Juan Carlos Rodríguez Sánchez | 67001445 | RAW, perfilamiento, pipelines y evidencia |
 
 Informe completo: `Proyecto Ing_Datos.docx`. Manual técnico final: `Manual_Tecnico_Pipeline_Teatro.pdf`.
-Repositorio: https://github.com/Alonso-dfg/proyecto-teatro-ingdatos
+Repositorio: https://github.com/Alonso-dfg/proyectos
